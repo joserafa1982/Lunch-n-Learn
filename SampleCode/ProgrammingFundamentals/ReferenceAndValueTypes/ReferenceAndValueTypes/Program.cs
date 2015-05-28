@@ -10,7 +10,7 @@ namespace ReferenceAndValueTypes
         static void Main(string[] args)
         {
             Program p = new Program();
-            p.RunValueTypeTest();
+            p.RunStringImmutabilityTest();
 
             Console.ReadLine();
         }
@@ -23,7 +23,7 @@ namespace ReferenceAndValueTypes
             Console.WriteLine("------ 1.------------");
             Console.WriteLine(myNumber);
 
-            MakeChange(myNumber);
+            MakeChange(ref myNumber);
 
             Console.WriteLine("------ 3.------------");
             Console.WriteLine(myNumber);
@@ -95,7 +95,7 @@ namespace ReferenceAndValueTypes
             Console.WriteLine(student.StudentId);
             Console.WriteLine(student.Fullname);
 
-            SetToNull(student);
+            SetToNull(ref student);
 
             Console.WriteLine("------ 3.------------");
             Console.WriteLine(student.StudentId);
@@ -205,7 +205,7 @@ namespace ReferenceAndValueTypes
             myCopy.First(x => x.StudentId == 1).Fullname = "Jonathan";
             
             Console.WriteLine("------ 2.------------");
-            foreach (var student in myList)
+            foreach (var student in myCopy)
                 Console.WriteLine(student.Fullname + " " + student.StudentId);
         }
 
@@ -260,6 +260,12 @@ namespace ReferenceAndValueTypes
             name = "Jane";
             Console.WriteLine(name);
         }
+
+        //private void MakeChange2(Student student)
+        //{
+        //    student.Fullname = "Jane";
+        //    Console.WriteLine(name);
+        //}
 
         private void MakeChange(ref string name)
         {
